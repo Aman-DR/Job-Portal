@@ -1,9 +1,6 @@
 package com.example.Dotworld.Job.Portal.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -19,10 +16,10 @@ public class Job {
     private String paymentMethod;
     private Integer price;
 
-  //  private Business businessId;
+    private String jobStatus = "PENDING";
 
-    //private String JobStatus;
-
-//    private User userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customer customerId;
 
 }

@@ -1,10 +1,9 @@
 package com.example.Dotworld.Job.Portal.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -16,4 +15,7 @@ public class Customer {
     private String name;
     private String emailId;
     private Integer mobile;
+
+    @OneToMany(mappedBy = "customerId",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Job> jobs;
 }
