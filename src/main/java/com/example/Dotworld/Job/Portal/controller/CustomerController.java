@@ -21,30 +21,28 @@ public class CustomerController {
         return customerservice.getJobs();
     }
 
-    @GetMapping("/getjob/{jobId}")   // {jobId}
-    public List<Job> getJobById(@PathVariable Integer jobId){  //@PathVariable
+    @GetMapping("/jobId/{jobId}")
+    public List<Job> getJobById(@PathVariable Integer jobId){
         return customerservice.getJobById(jobId);
     }
 
-    @GetMapping("/getJob/1")  //{customerId}
-    public List<Job> getJobByCustomerId(Integer customerId){  //@PathVariable
+    @GetMapping("/custId/{customerId}")
+    public List<Job> getJobByCustomerId(@PathVariable Integer customerId){
         return customerservice.getJobByCustomerId(customerId);
     }
 
     @PostMapping("/create/{customerId}")
     public String createJob(@PathVariable Integer customerId, @RequestBody Job job){
-
-
         return customerservice.createJob(customerId,job);
     }
 
     @PutMapping("/update/{jobId}")   //{jobId}
-    public String updateJob(@PathVariable Integer jobId){
-        return customerservice.updateJob(jobId);
+    public String updateJob(@PathVariable Integer jobId, @RequestBody Job job){
+        return customerservice.updateJob(jobId,job);
     }
 
-    @DeleteMapping("/delete/1")
-        public String deleteJob(Integer jobId){
+    @DeleteMapping("/delete/{jobId}")
+        public String deleteJob(@PathVariable Integer jobId){
             return customerservice.deleteJob(jobId);
         }
 

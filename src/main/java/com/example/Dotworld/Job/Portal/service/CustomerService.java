@@ -32,7 +32,7 @@ public class CustomerService {
 
     public List<Job> getJobByCustomerId(Integer customerId) {
 
-        return jobrepository.getJobByCustomerId(customerId);
+        return jobrepository.getJobByCustomer_CustomerId(customerId);
 
     }
 
@@ -50,7 +50,7 @@ public class CustomerService {
             jobs.setDueDate(job.getDueDate());
             jobs.setPaymentMethod(job.getPaymentMethod());
             jobs.setPrice(job.getPrice());
-            jobs.setCustomerId(customer);
+            jobs.setCustomer(customer);
 
             jobrepository.save(jobs);
 
@@ -61,11 +61,46 @@ public class CustomerService {
         }
     }
 
-    public String updateJob(Integer jobId) {
-        return "Working";
+
+    public String updateJob(Integer jobId, Job job) {
+
+        try{
+
+        Job jobss = jobrepository.findById(jobId)
+                .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
+
+        Job jobs = new Job();
+
+        jobs.setJobId(job.getJobId());
+        jobs.setJobCategory(job.getJobCategory());
+        jobs.setDescription(job.getDescription());
+        jobs.setDueDate(job.getDueDate());
+        jobs.setPaymentMethod(job.getPaymentMethod());
+        jobs.setPrice(job.getPrice());
+        jobs.setCustomer(job.getCustomer());
+
+        jobrepository.save(jobs);
+
+        return "Updated the Job Properly";
+    }
+         catch (RuntimeException e) {
+            return "Job ID is not found";
+        }
     }
 
     public String deleteJob(Integer jobId) {
-        return "Working";
+
+        try{
+            Job jobss = jobrepository.findById(jobId)
+                    .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
+
+            jobrepository.deleteById(jobId);
+
+            return "Job deleted";
+
+        }
+        catch (RuntimeException e) {
+            return "Job ID is not found";
+        }
     }
 }

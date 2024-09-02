@@ -11,5 +11,5 @@ public interface JobRepository extends JpaRepository<Job,Integer> {
 
     List<Job> getJobByJobId(Integer jobId);
 
-    List<Job> getJobByCustomerId(Integer customerId);
+    List<Job> getJobByCustomer_CustomerId(Integer customerId);
 }

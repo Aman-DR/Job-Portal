@@ -16,6 +16,6 @@ public class Customer {
     private String emailId;
     private Integer mobile;
 
-    @OneToMany(mappedBy = "customerId",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Job> jobs;
 }
