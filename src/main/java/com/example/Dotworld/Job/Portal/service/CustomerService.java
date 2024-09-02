@@ -67,10 +67,8 @@ public class CustomerService {
 
         try{
 
-        Job jobss = jobrepository.findById(jobId)
+        Job jobs = jobrepository.findById(jobId)
                 .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
-
-        Job jobs = new Job();
 
         jobs.setJobCategory(job.getJobCategory());
         jobs.setDescription(job.getDescription());
