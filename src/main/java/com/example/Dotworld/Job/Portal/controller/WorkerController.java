@@ -1,12 +1,13 @@
 package com.example.Dotworld.Job.Portal.controller;
 
 
+import com.example.Dotworld.Job.Portal.entity.Job;
 import com.example.Dotworld.Job.Portal.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/worker")
@@ -15,23 +16,25 @@ public class WorkerController {
     @Autowired
     WorkerService workerservice;
 
+
+
     @GetMapping("/getjob")
-    public String getJobs(){
+    public List<Job> getJobs(){
 
         return workerservice.getJobs();
     }
 
-    @GetMapping("/getjob/1")   // {jobId}
-    public String getJobById(Integer jobId){  //@PathVariable
+    @GetMapping("/jobId/{jobId}")   // {jobId}
+    public Optional<Job> getJobById(@PathVariable Integer jobId){  //@PathVariable
         return workerservice.getJobById(jobId);
     }
 
-    @GetMapping("/getJob/1")  //{customerId}
-    public String getJobByCustomerId(Integer customerId){  //@PathVariable
+    @GetMapping("/custId/{jobId}")  //{customerId}
+    public List<Job> getJobByCustomerId(Integer customerId){  //@PathVariable
         return workerservice.getJobByCustomerId(customerId);
     }
 
-    @PutMapping("/accept/1")
+    @PutMapping("/accept/{jobId}")
     public String acceptJob(Integer jobId){
 
         return  workerservice.acceptJob(jobId);

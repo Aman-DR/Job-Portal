@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -24,10 +25,10 @@ public class CustomerService {
         return jobrepository.findAll();
     }
 
-    public List<Job>getJobById(Integer jobId) {
+    public Optional<Job> getJobById(Integer jobId) {
 
 
-        return jobrepository.getJobByJobId(jobId);
+        return jobrepository.findById(jobId);
     }
 
     public List<Job> getJobByCustomerId(Integer customerId) {
@@ -71,7 +72,6 @@ public class CustomerService {
 
         Job jobs = new Job();
 
-        jobs.setJobId(job.getJobId());
         jobs.setJobCategory(job.getJobCategory());
         jobs.setDescription(job.getDescription());
         jobs.setDueDate(job.getDueDate());

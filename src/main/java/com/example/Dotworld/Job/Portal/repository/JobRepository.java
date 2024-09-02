@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface JobRepository extends JpaRepository<Job,Integer> {
 
-    List<Job> getJobByJobId(Integer jobId);
+//    List<Job> getJobByJobId(Integer jobId);
 
     List<Job> getJobByCustomer_CustomerId(Integer customerId);
 }
