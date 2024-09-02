@@ -16,7 +16,7 @@ public class WorkerService {
 
     public List<Job> getJobs() {
 
-        return jobRepository.findAll() ;
+        return jobRepository.findAll();
     }
 
     public Optional<Job> getJobById(Integer jobId) {
@@ -32,11 +32,37 @@ public class WorkerService {
 
     public String acceptJob(Integer jobId) {
 
+        try {
 
-        return "Working";
+            Job jobs = jobRepository.findById(jobId)
+                    .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
+
+            jobs.setJobStatus("ACCEPTED");
+
+            jobRepository.save(jobs);
+
+            return "Job Status updated";
+        } catch (RuntimeException e) {
+            return "Job ID is not found";
+        }
     }
 
-    public String rejectJob(Integer jobId) {
-        return "Working";
-    }
+        public String rejectJob (Integer jobId){
+            try {
+
+                Job jobs = jobRepository.findById(jobId)
+                        .orElseThrow(() -> new RuntimeException("Job not found with ID: " + jobId));
+
+                jobs.setJobStatus("REJECTED");
+
+                jobRepository.save(jobs);
+
+                return "Job Status updated";
+            } catch (RuntimeException e) {
+                return "Job ID is not found";
+            }
+        }
+
 }
+
+

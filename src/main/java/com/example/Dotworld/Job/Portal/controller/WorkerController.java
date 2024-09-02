@@ -25,23 +25,24 @@ public class WorkerController {
     }
 
     @GetMapping("/jobId/{jobId}")   // {jobId}
-    public Optional<Job> getJobById(@PathVariable Integer jobId){  //@PathVariable
+    public Optional<Job> getJobById(@PathVariable Integer jobId){
         return workerservice.getJobById(jobId);
     }
 
-    @GetMapping("/custId/{jobId}")  //{customerId}
-    public List<Job> getJobByCustomerId(Integer customerId){  //@PathVariable
+    @GetMapping("/custId/{jobId}")
+    public List<Job> getJobByCustomerId(@PathVariable Integer customerId){
         return workerservice.getJobByCustomerId(customerId);
     }
 
     @PutMapping("/accept/{jobId}")
-    public String acceptJob(Integer jobId){
+    public String acceptJob(@PathVariable Integer jobId){
 
         return  workerservice.acceptJob(jobId);
     }
 
-    @PutMapping("/reject/1")
-    public String rejectJob(Integer jobId){
+    @PutMapping("/reject/{jobId}")
+    public String rejectJob(@PathVariable Integer jobId){
+
 
         return workerservice.rejectJob(jobId);
     }
