@@ -29,7 +29,7 @@ public class WorkerController {
         return workerservice.getJobById(jobId);
     }
 
-    @GetMapping("/custId/{jobId}")
+    @GetMapping("/custId/{customerId}")
     public List<Job> getJobByCustomerId(@PathVariable Integer customerId){
         return workerservice.getJobByCustomerId(customerId);
     }
