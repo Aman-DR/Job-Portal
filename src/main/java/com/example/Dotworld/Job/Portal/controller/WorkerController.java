@@ -24,7 +24,7 @@ public class WorkerController {
         return workerservice.getJobs();
     }
 
-    @GetMapping("/jobId/{jobId}")   // {jobId}
+    @GetMapping("/jobId/{jobId}")
     public Optional<Job> getJobById(@PathVariable Integer jobId){
         return workerservice.getJobById(jobId);
     }
