@@ -12,6 +12,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+	
+	// To access the end-point ofCustomer
 
     @Autowired
     CustomerService customerservice;
